@@ -1,8 +1,43 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Xamarin.UI.Controls.Demo.Views.Pages.ControlsPage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 x:Class="Xamarin.UI.Controls.Demo.Views.Pages.ControlsPage"
+			 xmlns:controls="clr-namespace:Codetreehouse.Xamarin.UI.Controls;assembly=Codetreehouse.Xamarin.UI.Controls"
+			 >
 	<ContentPage.Content>
-		<StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-			<Label>Controls will be shown here</Label>
-		</StackLayout>
+		<ScrollView>
+			<StackLayout Margin="0, 30, 0, 0">
+				<Frame Background="LightGrey" HasShadow="False" Margin="20" CornerRadius="20">
+					<StackLayout>
+						<Label HorizontalOptions="Center" Text="Radial Progress Indicator"/>
+						<StackLayout VerticalOptions="Center" HorizontalOptions="Center" BindingContext="{Binding ViewModels[RadialProgressIndicator]}">
+
+							<controls:RadialProgressIndicator
+								HorizontalOptions="Center"
+								HeightRequest="150"
+								WidthRequest="150"
+								StrokeWidth="40"
+								Progress="{Binding Progress}"
+								BackgroundRingColour="White"
+								ProgressColour="DarkBlue"/>
+
+							<Label Text="{Binding Progress} " HorizontalOptions="CenterAndExpand"/>
+
+							<Grid IsClippedToBounds="True" ColumnSpacing="0" Margin="-20, 0, -20, -20">
+								<Button CornerRadius="0" Padding="10" BackgroundColor="DarkGray" TextColor="White" Command="{Binding ChangePercentageCommand}" CommandParameter="0" Text="0%"/>
+								<Button CornerRadius="0" Grid.Column="1" Padding="10" BackgroundColor="DarkGray" TextColor="White" Command="{Binding ChangePercentageCommand}" CommandParameter="25" Text="25%"/>
+								<Button CornerRadius="0" Grid.Column="2" Padding="10" BackgroundColor="DarkGray" TextColor="White" Command="{Binding ChangePercentageCommand}" CommandParameter="50" Text="50%"/>
+								<Button CornerRadius="0" Grid.Column="3" Padding="10" BackgroundColor="DarkGray" TextColor="White" Command="{Binding ChangePercentageCommand}" CommandParameter="75" Text="75%"/>
+								<Button CornerRadius="0" Grid.Column="4" Padding="10" BackgroundColor="DarkGray" TextColor="White" Command="{Binding ChangePercentageCommand}" CommandParameter="100" Text="100%"/>
+							</Grid>
+							<Slider Margin="-20, 15, -20, -20" Grid.Row="1" Minimum="0" Maximum="100" Value="{Binding Progress, Mode=TwoWay}" HorizontalOptions="FillAndExpand"/>
+
+
+						</StackLayout>
+					</StackLayout>
+				</Frame>
+			</StackLayout>
+		</ScrollView>
+
 	</ContentPage.Content>
 </ContentPage>
